@@ -1,0 +1,136 @@
+$ bash aks-acr.sh 
+WARNING: Option '--skip-assignment' has been deprecated and will be removed in a future release.
+WARNING: The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+59bcac39-ba80-4694-9328-d28f9638c3a4
+q2t8Q~G1ebWf7MyKEA6Ojs-NdfIo-pGucSi9Xcki
+{
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest",
+  "location": "brazilsouth",
+  "managedBy": null,
+  "name": "KubernetesClusterTest",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+Creating cluster, this could take a few mins
+(AddContainerInsightsSolutionError) Code="MissingSubscriptionRegistration" Message="The subscription is not registered to use namespace 'Microsoft.OperationsManagement'. See https://aka.ms/rps-not-found for how to register subscriptions." Details=[{"code":"MissingSubscriptionRegistration","message":"The subscription is not registered to use namespace 'Microsoft.OperationsManagement'. See https://aka.ms/rps-not-found for how to register subscriptions.","target":"Microsoft.OperationsManagement"}]
+Code: AddContainerInsightsSolutionError
+Code: AddContainerInsightsSolutionError
+Message: Code="MissingSubscriptionRegistration" Message="The subscription is not registered to use namespace 'Microsoft.OperationsManagement'. See https://aka.ms/rps-not-found for how to register subscriptions." Details=[{"code":"MissingSubscriptionRegistration","message":"The subscription is not registered to use namespace 'Microsoft.OperationsManagement'. See https://aka.ms/rps-not-found for how to register subscriptions.","target":"Microsoft.OperationsManagement"}]
+(ControlPlaneNotFound) Could not find control plane with ID 638091215df824000188f6ca.
+Code: ControlPlaneNotFound
+Message: Could not find control plane with ID 638091215df824000188f6ca.
+cluster creds for are imported
+{
+  "adminUserEnabled": true,
+  "anonymousPullEnabled": false,
+  "creationDate": "2022-11-25T09:56:50.299978+00:00",
+  "dataEndpointEnabled": false,
+  "dataEndpointHostNames": [],
+  "encryption": {
+    "keyVaultProperties": null,
+    "status": "disabled"
+  },
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01",
+  "identity": null,
+  "location": "brazilsouth",
+  "loginServer": "clockacr01.azurecr.io",
+  "name": "clockacr01",
+  "networkRuleBypassOptions": "AzureServices",
+  "networkRuleSet": null,
+  "policies": {
+    "azureAdAuthenticationAsArmPolicy": {
+      "status": "enabled"
+    },
+    "exportPolicy": {
+      "status": "enabled"
+    },
+    "quarantinePolicy": {
+      "status": "disabled"
+    },
+    "retentionPolicy": {
+      "days": 7,
+      "lastUpdatedTime": "2022-11-25T09:56:53.951820+00:00",
+      "status": "disabled"
+    },
+    "softDeletePolicy": {
+      "lastUpdatedTime": "2022-11-25T09:56:53.951820+00:00",
+      "retentionDays": 7,
+      "status": "disabled"
+    },
+    "trustPolicy": {
+      "status": "disabled",
+      "type": "Notary"
+    }
+  },
+  "privateEndpointConnections": [],
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "KubernetesClusterTest",
+  "sku": {
+    "name": "Standard",
+    "tier": "Standard"
+  },
+  "status": null,
+  "systemData": {
+    "createdAt": "2022-11-25T09:56:50.299978+00:00",
+    "createdBy": "paulojeronimo@gmail.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2022-11-25T09:56:50.299978+00:00",
+    "lastModifiedBy": "paulojeronimo@gmail.com",
+    "lastModifiedByType": "User"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries",
+  "zoneRedundancy": "Disabled"
+}
+{
+  "canDelegate": null,
+  "condition": null,
+  "conditionVersion": null,
+  "description": null,
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01/providers/Microsoft.Authorization/roleAssignments/7174b20c-5514-4e17-afed-4ff992dba73c",
+  "name": "7174b20c-5514-4e17-afed-4ff992dba73c",
+  "principalId": "21cb47aa-f789-491a-a100-27cefec834ef",
+  "principalType": "ServicePrincipal",
+  "resourceGroup": "KubernetesClusterTest",
+  "sku": {
+    "name": "Standard",
+    "tier": "Standard"
+  },
+  "status": null,
+  "systemData": {
+    "createdAt": "2022-11-25T09:56:50.299978+00:00",
+    "createdBy": "paulojeronimo@gmail.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2022-11-25T09:56:50.299978+00:00",
+    "lastModifiedBy": "paulojeronimo@gmail.com",
+    "lastModifiedByType": "User"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries",
+  "zoneRedundancy": "Disabled"
+}
+{
+  "canDelegate": null,
+  "condition": null,
+  "conditionVersion": null,
+  "description": null,
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01/providers/Microsoft.Authorization/roleAssignments/7174b20c-5514-4e17-afed-4ff992dba73c",
+  "name": "7174b20c-5514-4e17-afed-4ff992dba73c",
+  "principalId": "21cb47aa-f789-491a-a100-27cefec834ef",
+  "principalType": "ServicePrincipal",
+  "resourceGroup": "KubernetesClusterTest",
+  "roleDefinitionId": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+  "scope": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01",
+  "type": "Microsoft.Authorization/roleAssignments"
+}
+your cluster is now ready to use, check the portal for more details
+error: You must be logged in to the server (the server has asked for the client to provide credentials)
+appId: 59bcac39-ba80-4694-9328-d28f9638c3a4
+displayName: azure-cli-2022-11-25-09-55-18
+password: q2t8Q~G1ebWf7MyKEA6Ojs-NdfIo-pGucSi9Xcki
+tenant: b7e07e20-4bf9-40ca-9fef-92584d6a5301
+Keep these credentials for future use

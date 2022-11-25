@@ -1,0 +1,274 @@
+= Azure Kubernetes Service Deployment Center With GitHub Actions
+Paulo Jerônimo, {localdatetime}
+:toc: left
+:toc-title: {doctitle}
+:nofooter:
+:numbered:
+:idprefix:
+:idseparator: -
+:icons: font
+:experimental:
+:sectanchors:
+
+:uri-repo1: https://github.com/paulojeronimo/aks-acr-all-in-one
+:uri-repo2: https://github.com/paulojeronimo/react-clock-basic
+
+== Azure CLI basics
+
+=== Azure Cloud Shell
+
+Open https://shell.azure.com.
+
+Try the following commands after log in.
+
+----
+$ az account show
+$ az group list
+----
+
+----
+$ az interactive
+----
+
+----
+$ az group create --location brazilsouth \
+--resource-group ExampleResourceGroup
+----
+
+----
+$ az vm create -n ubuntu-vm1 -g ExampleResourceGroup \
+--image UbuntuLTS --generate-ssh-keys --public-ip-sku Standard
+----
+
+----
+$ ip=$(az vm show -d -g ExampleResourceGroup -n ubuntu-vm1 \
+--query publicIps -o tsv)
+
+$ ssh $ip
+
+$ echo "$ip" > ~/.ssh/ip
+----
+
+=== Copy the Azure SSH keys to your machine using ngrok
+
+Create an account on https://ngrok.com[ngrok^] and start ngrok with your
+token as the example below:
+
+----
+$ ngrok config add-authtoken \
+2I0hm8rUyLEHK7iNp1z9cLwLaFp_4v4BVKTmfmBjKaj5VBScA
+----
+
+In the next command (below), open another terminal and start ngrok on
+port 22 (keep this terminal open and running `ngrok`).
+
+[WARNING]
+====
+. The configured `authtoken` above is obviously fake! ;)
+. You should have installed OpenSSH server first!
+. Notice the URL and port opened by ngrok after its start.
+====
+
+----
+$ ngrok tcp 22
+----
+
+I copied the Azure Cloud Shell ssh keys to my Ubuntu machine using this
+command:
+
+----
+$ (cd ~/.ssh; tar cf - ip id_rsa* | \
+ssh -p10712 pj@0.tcp.sa.ngrok.io "cat > ~/az.tar")
+----
+
+After that, I my Ubuntu machine to access the remote `ubuntu-vm1`
+created on Azure through the following steps:
+
+----
+$ mkdir -p ~/tmp/az && cd $_ && tar xf ~/az.tar && \
+rename 's/id_rsa/az_id_rsa/' * && mv az_* ~/.ssh
+----
+
+----
+$ echo -e "$(cat ~/tmp/az/ip)\taz-ubuntu-vm1" | sudo tee -a /etc/hosts
+----
+
+----
+$ cat <<'EOF' > ~/.ssh/config
+Host az-ubuntu-vm1
+  User paulo
+  Identityfile ~/.ssh/az_id_rsa
+EOF
+----
+
+Finally, I test the access to az-ubuntu-vm1 from my Ubuntu machine:
+
+----
+$ ssh az-ubuntu-vm1
+----
+
+=== Running Azure CLI through a Docker container
+
+----
+$ docker run -it -v ~/.ssh:/root/.ssh mcr.microsoft.com/azure-cli
+
+$ az login
+----
+
+=== Clean up resources
+
+----
+$ az vm delete --resource-group ExampleResourceGroup \
+--name ubuntu-vm1 --yes
+----
+
+----
+$ az group delete --name ExampleResourceGroup
+----
+
+== Kubernetes Service Deployment Center With GitHub Actions
+
+=== Set up the Kubernetes Cluster
+
+[subs=macros]
+....
+$ az interactive
+
+az>> aks get-versions --location brazilsouth --output table
+KubernetesVersion    Upgrades
+-------------------  ------------------------
+1.25.2(preview)      None available
+1.24.6               1.25.2(preview)
+1.24.3               1.24.6, 1.25.2(preview)
+1.23.12              1.24.3, 1.24.6
+1.23.8               1.23.12, 1.24.3, 1.24.6
+1.22.15              1.23.8, 1.23.12
+1.22.11              1.22.15, 1.23.8, 1.23.12
+
+kbd:[Ctrl+D]
+....
+
+[subs=attributes]
+....
+$ repo={uri-repo1}
+$ git clone $repo && cd $(basename $repo)
+....
+
+....
+$ vim aks-acr.sh
+
+$ sed -n '3,11p' aks-acr.sh 
+GROUPNAME="KubernetesClusterTest"
+LOCATION="brazilsouth"
+AKSNAME="clockaks01"
+ACRNAME="clockacr01" # must be globally unique
+SUBID="b78bd654-cd04-4508-9cb0-6b167f287647"
+
+### get version by running
+### az aks get-versions --location $LOCATION --output table
+k8sversion="1.24.6"
+....
+
+....
+$ bash aks-acr.sh
+....
+
+[WARNING]
+====
+. If you have a 'Free Trial' subscription you will receive an error!
+You will need to increase your quota from 4 to 6 and even trying to
+submit a request to this, Microsoft will not help you. +
+So your alternative will be Upgrade your Subscription to 'Pay-As-You-Go'
+and then execute the command above again.
+. After you upgrade your subscription, you will also have to register it
+  in the namespace `Microsoft.OperationsManagement` or you will get
+another error. +
+In order to do that, type the following command:
++
+....
+$ az provider register --namespace Microsoft.OperationsManagement
+....
+// https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-register-resource-provider?tabs=azure-cli
++
+. Before trying to execute the `aks-acr.sh` again, you will need to
+  delete the resource group. So, execute this command:
++
+....
+$ az group delete --name KubernetesClusterTest
+....
+// https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-cli
+====
+
+....
+$ kubectl get pods --all-namespaces
+....
+
+....
+$ az aks get-credentials --name clockaks01 -g KubernetesClusterTest
+Merged "clockaks01" as current context in /home/paulo/.kube/config
+....
+// Ref: Credentials
+
+:deploy: .github/workflows/deploytoAksCluster.yml
+
+In my {uri-repo2}[my react-clock-basic^] fork you can locate the
+Kubernetes namespace using grep to search in the file `{deploy}`.
+
+[subs=attributes]
+....
+$ grep 'kubectl create namespace' {deploy}
+            echo `kubectl create namespace clockaks01b9e9`
+....
+
+So now you can use the found name to pass it to kubectl command here:
+
+....
+$ kubectl get pods --namespace clockaks01b9e9
+....
+
+....
+$ kubectl get service --namespace clockaks01b9e9
+....
+
+=== Deploying the application
+
+==== Configuring GitHub Repository Secrets
+
+[subs=attributes]
+----
+$ repo={uri-repo2}
+$ git clone {uri-repo2} && cd $(basename $repo)
+----
+
+----
+$ gh secret list
+----
+
+----
+$ gh secret set ACR_CLOCKACR01_USERNAME -b \
+"$(az acr credential show -n clockacr01 \
+--query "username" -o tsv)"
+----
+
+----
+$ gh secret set ACR_CLOCKACR01_PASSWORD -b \
+"$(az acr credential show -n clockacr01 \
+--query "passwords[0].value" -o tsv)"
+----
+
+----
+$ gh secret set AKS_CLOCKAKS01_KUBECONFIG -b "$(< ~/.kube/config)"
+----
+
+==== Deploying the app
+
+=== References
+
+. https://learn.microsoft.com/en-us/azure/aks/deployment-center-launcher +
+  Deployment Center for Azure Kubernetes
+. https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel +
+  Deploy to App Service using GitHub Actions
+. https://www.youtube.com/watch?v=2Y-zjCt_8xo +
+  Azure Kubernetes Service Deployment Center With GitHub Actions.
+. https://www.youtube.com/watch?v=_fdTCBwV9kA +
+  AZURE KUBERNETES SERVICE DEPLOYMENT PIPELINE AND GITHUB ACTIONS

@@ -1,0 +1,50 @@
+WARNING: Option '--skip-assignment' has been deprecated and will be removed in a future release.
+WARNING: The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+2a2f0bf6-a365-4df3-809a-9d029f6808b7
+GsJ8Q~~iJWCYLF.3_-4IWu8mpQ.kn_ZmNQpXXct.
+{
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest",
+  "location": "brazilsouth",
+  "managedBy": null,
+  "name": "KubernetesClusterTest",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+Creating cluster, this could take a few mins
+Resource provider 'Microsoft.OperationalInsights' used by this operation is not registered. We are registering for you.
+Registration succeeded.
+Resource provider 'Microsoft.ContainerService' used by this operation is not registered. We are registering for you.
+Registration succeeded.
+(QuotaExceeded) Provisioning of resource(s) for container service clockaks01 in resource group KubernetesClusterTest failed. Message: Operation could not be completed as it results in exceeding approved Total Regional Cores quota. Additional details - Deployment Model: Resource Manager, Location: brazilsouth, Current Limit: 4, Current Usage: 0, Additional Required: 6, (Minimum) New Limit Required: 6. Submit a request for Quota increase at https://aka.ms/ProdportalCRP/#blade/Microsoft_Azure_Capacity/UsageAndQuota.ReactView/Parameters/%7B%22subscriptionId%22:%22b78bd654-cd04-4508-9cb0-6b167f287647%22,%22command%22:%22openQuotaApprovalBlade%22,%22quotas%22:[%7B%22location%22:%22brazilsouth%22,%22providerId%22:%22Microsoft.Compute%22,%22resourceName%22:%22cores%22,%22quotaRequest%22:%7B%22properties%22:%7B%22limit%22:6,%22unit%22:%22Count%22,%22name%22:%7B%22value%22:%22cores%22%7D%7D%7D%7D]%7D by specifying parameters listed in the ‘Details’ section for deployment to succeed. Please read more about quota limits at https://docs.microsoft.com/en-us/azure/azure-supportability/regional-quota-requests. Details: 
+Code: QuotaExceeded
+Message: Provisioning of resource(s) for container service clockaks01 in resource group KubernetesClusterTest failed. Message: Operation could not be completed as it results in exceeding approved Total Regional Cores quota. Additional details - Deployment Model: Resource Manager, Location: brazilsouth, Current Limit: 4, Current Usage: 0, Additional Required: 6, (Minimum) New Limit Required: 6. Submit a request for Quota increase at https://aka.ms/ProdportalCRP/#blade/Microsoft_Azure_Capacity/UsageAndQuota.ReactView/Parameters/%7B%22subscriptionId%22:%22b78bd654-cd04-4508-9cb0-6b167f287647%22,%22command%22:%22openQuotaApprovalBlade%22,%22quotas%22:[%7B%22location%22:%22brazilsouth%22,%22providerId%22:%22Microsoft.Compute%22,%22resourceName%22:%22cores%22,%22quotaRequest%22:%7B%22properties%22:%7B%22limit%22:6,%22unit%22:%22Count%22,%22name%22:%7B%22value%22:%22cores%22%7D%7D%7D%7D]%7D by specifying parameters listed in the ‘Details’ section for deployment to succeed. Please read more about quota limits at https://docs.microsoft.com/en-us/azure/azure-supportability/regional-quota-requests. Details: 
+(ResourceNotFound) The Resource 'Microsoft.ContainerService/managedClusters/clockaks01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.ContainerService/managedClusters/clockaks01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+cluster creds for are imported
+Resource provider 'Microsoft.ContainerRegistry' used by this operation is not registered. We are registering for you.
+^CERROR: (ResourceNotFound) The Resource 'Microsoft.ContainerService/managedClusters/clockaks01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.ContainerService/managedClusters/clockaks01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+ERROR: (ResourceNotFound) The Resource 'Microsoft.ContainerRegistry/registries/clockacr01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.ContainerRegistry/registries/clockacr01' under resource group 'KubernetesClusterTest' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+argument --assignee: expected one argument
+
+Examples from AI knowledge base:
+az role assignment create --assignee 00000000-0000-0000-0000-000000000000 --role "Storage Account Key Operator Service Role" --scope $id
+Create a new role assignment for a user, group, or service principal. (autogenerated)
+
+az role assignment create --assignee sp_name --role a_role
+Create role assignment for an assignee.
+
+az aks show --name MyManagedCluster --resource-group MyResourceGroup
+Show the details for a managed Kubernetes cluster
+
+https://docs.microsoft.com/en-US/cli/azure/role/assignment#az_role_assignment_create
+Read more about the command in reference docs
+your cluster is now ready to use, check the portal for more details
+^C
