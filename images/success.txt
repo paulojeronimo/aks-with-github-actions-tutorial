@@ -1,0 +1,287 @@
+$ bash aks-acr.sh 
+WARNING: Option '--skip-assignment' has been deprecated and will be removed in a future release.
+WARNING: The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+e2b886de-c0ca-4823-ad55-71a478e7e2aa
+x5Y8Q~TmjBAxC0vJ9D1leJ~M~YnFBrRanintDaoV
+{
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest",
+  "location": "brazilsouth",
+  "managedBy": null,
+  "name": "KubernetesClusterTest",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+Creating cluster, this could take a few mins
+AAD role propagation done[############################################]  100.0000%{
+  "aadProfile": null,
+  "addonProfiles": {
+    "httpApplicationRouting": {
+      "config": {
+        "HTTPApplicationRoutingZoneName": "f1720732e7584a248d95.brazilsouth.aksapp.io"
+      },
+      "enabled": true,
+      "identity": null
+    },
+    "omsagent": {
+      "config": {
+        "logAnalyticsWorkspaceResourceID": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/DefaultResourceGroup-CQ/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-b78bd654-cd04-4508-9cb0-6b167f287647-CQ",
+        "useAADAuth": "False"
+      },
+      "enabled": true,
+      "identity": null
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": null,
+      "count": 3,
+      "creationData": null,
+      "currentOrchestratorVersion": "1.24.6",
+      "enableAutoScaling": false,
+      "enableEncryptionAtHost": false,
+      "enableFips": false,
+      "enableNodePublicIp": false,
+      "enableUltraSsd": false,
+      "gpuInstanceProfile": null,
+      "hostGroupId": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "maxCount": null,
+      "maxPods": 110,
+      "minCount": null,
+      "mode": "System",
+      "name": "nodepool1",
+      "nodeImageVersion": "AKSUbuntu-1804gen2containerd-2022.10.24",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.24.6",
+      "osDiskSizeGb": 128,
+      "osDiskType": "Managed",
+      "osSku": "Ubuntu",
+      "osType": "Linux",
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleDownMode": null,
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": null,
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": {
+        "maxSurge": null
+      },
+      "vmSize": "Standard_DS2_v2",
+      "vnetSubnetId": null,
+      "workloadRuntime": null
+    }
+  ],
+  "apiServerAccessProfile": null,
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": null,
+  "azurePortalFqdn": "clockaks01-kubernetescluste-b78bd6-335ffb2f.portal.hcp.brazilsouth.azmk8s.io",
+  "currentKubernetesVersion": "1.24.6",
+  "disableLocalAccounts": false,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "clockaks01-KubernetesCluste-b78bd6",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "clockaks01-kubernetescluste-b78bd6-335ffb2f.hcp.brazilsouth.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourcegroups/KubernetesClusterTest/providers/Microsoft.ContainerService/managedClusters/clockaks01",
+  "identity": null,
+  "identityProfile": null,
+  "kubernetesVersion": "1.24.6",
+  "linuxProfile": {
+    "adminUsername": "azureuser",
+    "ssh": {
+      "publicKeys": [
+        {
+          "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYyHSQeDJgZbJ5jNO4NcGUr4mTP1gYoQatVJanpUl/SD1Rsvx48uanIXwxkIMWTtlBfjpu+9f29PW8tjMmluzwCpT2B1QP6L7Bpg7cmZUQ4nFXK7aiEBAi9XTlZuDEf7gYBPZfmCxSgBDhLSw6TJ3XdTUehuofGYSMpZDqP+zmBFc5sflqQZhpCcEt8R/QzPtcN3pFEBXjtWmh3jWBDXnQScxH/Tq6UwuJclf2pOhtfTJnsuiD5jW30jtoDIc08L1y1r+8YvZV+Me+bR4eftVgkzpFZP7nMvXnJXWMGKoiJUtvVhGkUFRfYwQ/1n8SRWIH2IsK9YKU3evWkTAxldY7"
+        }
+      ]
+    }
+  },
+  "location": "brazilsouth",
+  "maxAgentPools": 100,
+  "name": "clockaks01",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "effectiveOutboundIPs": [
+        {
+          "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/MC_KubernetesClusterTest_clockaks01_brazilsouth/providers/Microsoft.Network/publicIPAddresses/02549ee2-3d26-4241-b600-b127f7e872d6",
+          "resourceGroup": "MC_KubernetesClusterTest_clockaks01_brazilsouth"
+        }
+      ],
+      "enableMultipleStandardLoadBalancers": null,
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIPs": {
+        "count": 1,
+        "countIpv6": null
+      },
+      "outboundIPs": null,
+      "outboundIpPrefixes": null
+    },
+    "loadBalancerSku": "Standard",
+    "natGatewayProfile": null,
+    "networkMode": null,
+    "networkPlugin": "kubenet",
+    "networkPolicy": null,
+    "outboundType": "loadBalancer",
+    "podCidr": "10.244.0.0/16",
+    "podCidrs": [
+      "10.244.0.0/16"
+    ],
+    "serviceCidr": "10.0.0.0/16",
+    "serviceCidrs": [
+      "10.0.0.0/16"
+    ]
+  },
+  "nodeResourceGroup": "MC_KubernetesClusterTest_clockaks01_brazilsouth",
+  "oidcIssuerProfile": {
+    "enabled": false,
+    "issuerUrl": null
+  },
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": null,
+  "resourceGroup": "KubernetesClusterTest",
+  "securityProfile": {
+    "azureKeyVaultKms": null,
+    "defender": null
+  },
+  "servicePrincipalProfile": {
+    "clientId": "e2b886de-c0ca-4823-ad55-71a478e7e2aa",
+    "secret": null
+  },
+  "sku": {
+    "name": "Basic",
+    "tier": "Free"
+  },
+  "storageProfile": {
+    "blobCsiDriver": null,
+    "diskCsiDriver": {
+      "enabled": true
+    },
+    "fileCsiDriver": {
+      "enabled": true
+    },
+    "snapshotController": {
+      "enabled": true
+    }
+  },
+  "systemData": null,
+  "tags": null,
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "windowsProfile": null
+}
+Merged "clockaks01" as current context in /home/paulo/.kube/config
+cluster creds for are imported
+{
+  "adminUserEnabled": true,
+  "anonymousPullEnabled": false,
+  "creationDate": "2022-11-25T10:42:11.920168+00:00",
+  "dataEndpointEnabled": false,
+  "dataEndpointHostNames": [],
+  "encryption": {
+    "keyVaultProperties": null,
+    "status": "disabled"
+  },
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01",
+  "identity": null,
+  "location": "brazilsouth",
+  "loginServer": "clockacr01.azurecr.io",
+  "name": "clockacr01",
+  "networkRuleBypassOptions": "AzureServices",
+  "networkRuleSet": null,
+  "policies": {
+    "azureAdAuthenticationAsArmPolicy": {
+      "status": "enabled"
+    },
+    "exportPolicy": {
+      "status": "enabled"
+    },
+    "quarantinePolicy": {
+      "status": "disabled"
+    },
+    "retentionPolicy": {
+      "days": 7,
+      "lastUpdatedTime": "2022-11-25T10:42:14.822640+00:00",
+      "status": "disabled"
+    },
+    "softDeletePolicy": {
+      "lastUpdatedTime": "2022-11-25T10:42:14.822640+00:00",
+      "retentionDays": 7,
+      "status": "disabled"
+    },
+    "trustPolicy": {
+      "status": "disabled",
+      "type": "Notary"
+    }
+  },
+  "privateEndpointConnections": [],
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "KubernetesClusterTest",
+  "sku": {
+    "name": "Standard",
+    "tier": "Standard"
+  },
+  "status": null,
+  "systemData": {
+    "createdAt": "2022-11-25T10:42:11.920168+00:00",
+    "createdBy": "paulojeronimo@gmail.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2022-11-25T10:42:11.920168+00:00",
+    "lastModifiedBy": "paulojeronimo@gmail.com",
+    "lastModifiedByType": "User"
+  },
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries",
+  "zoneRedundancy": "Disabled"
+}
+{
+  "canDelegate": null,
+  "condition": null,
+  "conditionVersion": null,
+  "description": null,
+  "id": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01/providers/Microsoft.Authorization/roleAssignments/af347d69-8ea7-48d0-b123-47bff62f01db",
+  "name": "af347d69-8ea7-48d0-b123-47bff62f01db",
+  "principalId": "478113cb-f2d7-4644-ad2c-4d0ee31abc4d",
+  "principalType": "ServicePrincipal",
+  "resourceGroup": "KubernetesClusterTest",
+  "roleDefinitionId": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+  "scope": "/subscriptions/b78bd654-cd04-4508-9cb0-6b167f287647/resourceGroups/KubernetesClusterTest/providers/Microsoft.ContainerRegistry/registries/clockacr01",
+  "type": "Microsoft.Authorization/roleAssignments"
+}
+your cluster is now ready to use, check the portal for more details
+NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-12439220-vmss000000   Ready    agent   91s   v1.24.6
+aks-nodepool1-12439220-vmss000001   Ready    agent   95s   v1.24.6
+aks-nodepool1-12439220-vmss000002   Ready    agent   95s   v1.24.6
+appId: e2b886de-c0ca-4823-ad55-71a478e7e2aa
+displayName: azure-cli-2022-11-25-10-37-40
+password: x5Y8Q~TmjBAxC0vJ9D1leJ~M~YnFBrRanintDaoV
+tenant: b7e07e20-4bf9-40ca-9fef-92584d6a5301
+Keep these credentials for future use
